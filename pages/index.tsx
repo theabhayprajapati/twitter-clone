@@ -6,7 +6,7 @@ import Navigation from '../components/Navigationsection'
 
 const Home = () => {
   return (
-    <div className=" bg-black font-Monsertat ">
+    <div className="bg-black font-Monsertat ">
       <Head>
         <title>
           Home / Twitter

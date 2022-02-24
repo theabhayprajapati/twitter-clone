@@ -24,3 +24,8 @@
         @apply flex justify-center items-center rounded-full h-8 w-8 hover:opacity-80 hover:bg-gray-900 focus:shadow-lg shadow-blue-500
     }
   }
+
+
+body{
+background-color: black
+}
