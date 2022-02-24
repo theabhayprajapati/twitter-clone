@@ -7,7 +7,7 @@ import { db } from '../firebase';
 import TweetsSection from './tweetsection';
 
 const Feed = () => {
-    const { data: session } = useSession<any>()
+    const { data: session }:any = useSession<any>()
     let image: any = session?.user?.image
     // @ts-ignore
     let username: any = session?.user?.email.split("@")[0]

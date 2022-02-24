@@ -5,13 +5,14 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Explore from '../../../components/Exploresection'
 import Navigation from '../../../components/Navigationsection'
+import SingleTwitter from '../../../components/SingleTwitter'
 import { db } from '../../../firebase'
 
 const UserTweets = () => {
     const router = useRouter()
     console.log(router.query)
     // name usestate for users andtweets
-    const { users, tweets } = router.query
+    const { users, tweets }: any = router.query
     console.log(router.query.users)
 
     // const router = useRouter()
@@ -79,9 +80,8 @@ const UserTweets = () => {
                         <Navigation />
                     </div>
                 </div>
-                <div className="border border-gray-900 col-span-2  overflow-y-auto">
-                    {/* <Feed /> */}
-
+                <div className="border border-gray-900 col-span-2 w-full  overflow-y-auto">
+                    <SingleTwitter tweets={Alltweets} />
                 </div>
                 <div className="border-2 hidden md:inline-grid">
                     <Explore />
