@@ -1,14 +1,16 @@
 import { ChatAlt2Icon, DotsCircleHorizontalIcon, DotsHorizontalIcon, HeartIcon, ReplyIcon, UploadIcon } from '@heroicons/react/outline'
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase'
 
 const TweetsSection = () => {
+    const router = useRouter()
     const [Alltweets, setAlltweets] = useState<any>([])
     const AlltweetsRef = collection(db, "tweets")
     const { data: session } = useSession()
-    const username = session &&  (session?.user?.email).split("@")[0]
+    const username = session && (session?.user?.email).split("@")[0]
 
     useEffect(() => {
         // let querydaata = query(Alltweets, orderBy('desc'))
@@ -45,7 +47,9 @@ const TweetsSection = () => {
 
 
 
-                                    <div className="w-10% self-start ">
+                                    <div className="w-10% self-start " onClick={() => router.push(
+                                        `/${alltweets.data().screen_name}`
+                                    )}>
                                         <div className="rounded-full hover:opacity-90 cursor-pointer h-12 w-12 items-center flex justify-center " tabIndex={0}>
                                             <img src={alltweets.data().profile_image_url} alt="" className="h-full  rounded-full w-full  " />
                                         </div>
