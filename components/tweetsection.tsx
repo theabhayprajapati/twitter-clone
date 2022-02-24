@@ -77,8 +77,10 @@ const TweetsSection = () => {
 
                                             </button>
                                         </div>
-                                        <div>
-                                            <p className='text-sm'>
+                                        <div >
+                                            <p onClick={() => router.push(
+                                                `/${alltweets.data().screen_name}/tweet/${(alltweets.id)}`)} className='text-sm' >
+                                                {console.log(alltweets.id)}
                                                 {alltweets.data().tweet}
                                             </p>
                                             <img src="" alt="" />

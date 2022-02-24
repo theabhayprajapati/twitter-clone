@@ -13,7 +13,7 @@ const UserIndex = () => {
 
     useEffect(() => {
         console.log(pid)
-        let ColRef = doc(db, "users", "theabhayprajapati")
+        // let ColRef = doc(db, "users", "theabhayprajapati")
         let username = router.query.users
         console.log(username, "USERNAME")
         const userData = async (username: any) => {
@@ -51,7 +51,6 @@ const UserIndex = () => {
                                 Loading....
                             </title>
                             <link rel="icon" href="/SVG/twitterblue.svg" />
-
                         </Head>
                     )
             }
