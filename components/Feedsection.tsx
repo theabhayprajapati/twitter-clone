@@ -4,10 +4,11 @@ import { useSession } from 'next-auth/react'
 import React, { useEffect, useRef, useState } from 'react'
 import TextareaAutosize from 'react-textarea-autosize';
 import { db } from '../firebase';
+import LowerNav from './LowerNav';
 import TweetsSection from './tweetsection';
-
+import LoadingBar from 'react-top-loading-bar'
 const Feed = () => {
-    const { data: session }:any = useSession<any>()
+    const { data: session }: any = useSession<any>()
     let image: any = session?.user?.image
     // @ts-ignore
     let username: any = session?.user?.email.split("@")[0]
@@ -17,7 +18,7 @@ const Feed = () => {
     const [userinputtweet, setuserinputtweet] = useState<any>()
     const [imagePreview, setImagePreview] = useState<any>('')
     const [imageFile, setImageFile] = useState<any>('')
-
+    const [tweetbtnstate, settweetbtnstate] = useState(false)
     useEffect(() => {
         if (imageFile) {
             const reader = new FileReader()
@@ -35,6 +36,7 @@ const Feed = () => {
     const submittweet = async () => {
         let tweet = userinputtweet
         let inputimage = imagePreview
+        settweetbtnstate(true)
         await setDoc(doc(db, "users", username), {
             name: session.user.name,
             createdAt: serverTimestamp(),
@@ -58,12 +60,15 @@ const Feed = () => {
             email: session.user.email,
 
         })
-
+        settweetbtnstate(false)
+        setuserinputtweet('')
     }
-    return (
-        <div className="relative px-5 bg-black">
+    const ref = useRef(null)
 
-            <header className='sticky backdrop-blur-lg  opacity-80 top-0 h-10 text-white font-bold flex justify-start items-center'>
+    return (
+        <div className="relative  bg-black">
+
+            <header className='mx-5 sticky backdrop-blur-lg  opacity-80 top-0 h-10 text-white font-bold flex justify-start items-center'>
                 <button className="flex w-full justify-between">
                     <h1 className="font-bold">Home</h1>
                     <SparklesIcon className='nav-icons' />
@@ -71,7 +76,7 @@ const Feed = () => {
             </header>
 
             {/* input feed to let users' tweet */}
-            <div className='text-white flex space-x-2'>
+            <div className='text-white mx-5 flex space-x-2'>
 
                 <div className='w-[10%]  self-start'>
                     <div className='rounded-full hover:opacity-90 cursor-pointer h-12 w-12 items-center flex justify-center ' tabIndex={0}>
@@ -93,7 +98,7 @@ const Feed = () => {
                         </div>
                     </div>
 
-                    <button className='flex px-2  hover:bg-blue-600 hover:bg-opacity-30 transition transform duration-200 text-xs items-center rounded-full'>
+                    <button className='flex px-2  hover:bg-blue-600 hover:bg-opacity-30 transition transform duration-200 text-xs items-center rounded-full '>
                         <GlobeIcon className="nav-icons h-4 text-blue-500 text-xs" />
                         <h1 className='text-blue-500 font-bold'>
                             Everyone can reply
@@ -102,7 +107,7 @@ const Feed = () => {
                     <hr className="my-3 border-[#6E767D]" />
                     <div className='flex justify-between items-center mt-2'>
                         <div className='flex justify-between items-center gap-1'>
-                            <button className='flex justify-center items-center rounded-full h-8 w-8 hover:opacity-80 hover:bg-gray-900'>
+                            <button className='flex justify-center items-center rounded-full h-8 w-8 hover:opacity-80 hover:bg-gray-900 '>
                                 <PhotographIcon className="input-btn" onClick={() => { imageinputRef.current.click(); }} />
                                 {/* make a inpyt that only accepts iamges */}
                             </button>
@@ -135,18 +140,19 @@ const Feed = () => {
                                 <LocationMarkerIcon className="input-btn h-[20px]" />
                             </button>
                         </div>
-                        <button onClick={() => submittweet()} className="bg-blue-500 hover:bg-blue-600 font-bold px-4 py-1 rounded-full ">
+                        <button disabled={tweetbtnstate} onClick={() => submittweet()} className="bg-blue-500 hover:bg-blue-600 font-bold px-4 py-1 rounded-full disabled:bg-blue-200">
                             Tweet
                         </button>
                     </div>
                 </div>
 
             </div>
-            <hr className="my-3 border-[#6E767D]" />
-            <div className="">
-
+            <hr className="my-3 border-[#6E767D] mx-5" />
+            <LoadingBar color='#f11946' ref={ref} />
+            <div className="mx-5">
                 <TweetsSection />
             </div>
+            <LowerNav />
         </div>)
 }
 
