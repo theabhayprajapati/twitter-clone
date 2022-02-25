@@ -10,11 +10,11 @@ const UserIndex = () => {
     const router = useRouter()
     const pid = router.query
     const [userData, setuserData] = useState<any>({})
+    let username = router.query.users
 
     useEffect(() => {
         console.log(pid)
-
-        let username = router.query.users
+        // let ColRef = doc(db, "users", "theabhayprajapati")
         console.log(username, "USERNAME")
         const userData = async (username: any) => {
             const docRef = doc(db, "users", username);
@@ -26,16 +26,16 @@ const UserIndex = () => {
                 console.log("No such document!");
             }
         }
-        {
-            username && userData(username)
-        }
+
+        username && userData(username)
+
     }, [router])
     console.log(userData)
 
     return (
         <div className="bg-black font-Monsertat ">
             {
-                userData ? (
+                username && userData.name ? (
                     <Head>
                         <title>
                             {userData.name} / Twitter
