@@ -9,11 +9,11 @@ import { db } from '../../firebase'
 const UserIndex = () => {
     const router = useRouter()
     const pid = router.query
-    const [userData, setuserData] = useState({})
+    const [userData, setuserData] = useState<any>({})
 
     useEffect(() => {
         console.log(pid)
-        // let ColRef = doc(db, "users", "theabhayprajapati")
+
         let username = router.query.users
         console.log(username, "USERNAME")
         const userData = async (username: any) => {
@@ -35,7 +35,7 @@ const UserIndex = () => {
     return (
         <div className="bg-black font-Monsertat ">
             {
-                userData.name ? (
+                userData ? (
                     <Head>
                         <title>
                             {userData.name} / Twitter
