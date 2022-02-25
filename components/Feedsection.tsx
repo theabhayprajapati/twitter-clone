@@ -9,7 +9,7 @@ import TweetsSection from './tweetsection';
 
 const Feed = () => {
     const { data: session }: any = useSession<any>()
-    let image: any = session?.user?.image
+    let image: any = session?.user?.image 
     // @ts-ignore
     let username: any = session?.user?.email.split("@")[0]
     let name = session?.user?.name

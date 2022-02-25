@@ -4,7 +4,7 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 const Navigation = () => {
     // use session
-    const { data: session } = useSession()
+    const { data: session }:any = useSession<any>()
     const router = useRouter()
     console.log(session)
     const username = session?.user?.email.split("@")[0]

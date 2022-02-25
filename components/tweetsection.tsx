@@ -9,7 +9,7 @@ const TweetsSection = () => {
     const router = useRouter()
     const [Alltweets, setAlltweets] = useState<any>([])
     const AlltweetsRef = collection(db, "tweets")
-    const { data: session } = useSession()
+    const { data: session }: any = useSession()
     const username = session && (session?.user?.email).split("@")[0]
 
     useEffect(() => {
