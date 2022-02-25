@@ -6,7 +6,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { db } from '../firebase';
 import LowerNav from './LowerNav';
 import TweetsSection from './tweetsection';
-import LoadingBar from 'react-top-loading-bar'
+
 const Feed = () => {
     const { data: session }: any = useSession<any>()
     let image: any = session?.user?.image
@@ -148,7 +148,7 @@ const Feed = () => {
 
             </div>
             <hr className="my-3 border-[#6E767D] mx-5" />
-            <LoadingBar color='#f11946' ref={ref} />
+
             <div className="mx-5">
                 <TweetsSection />
             </div>
