@@ -4,9 +4,7 @@ import Head from 'next/head'
 
 const signinpage = ({ providers }: any) => {
     const { data: session } = useSession()
-    const loginwithgoogle = () => {
-        return (signIn())
-    }
+
     session && console.log(session)
     return (
         <div className="h-full w-full py-16 px-4">
