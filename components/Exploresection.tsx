@@ -28,7 +28,7 @@ const Explore = () => {
       <main className='text-white rounded-3xl bg-[#202327] mt-1'>
         <div className="p-2  w-full ">
           <h1 className='font-bold text-sm mt-2'>
-            What's Happening
+            What&apos;s Happening
           </h1>
           <div onClick={() => router.push(trending[0].url)} className='mt-4 cursor-pointer'>
             <div className='flex   cursor-pointer items-center space-x-2'>

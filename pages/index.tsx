@@ -26,7 +26,7 @@ const Home = () => {
         <div className="hidden md:inline-grid">
           <Explore />
         </div>
-        
+
       </main>
 
 

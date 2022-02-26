@@ -29,13 +29,13 @@ const UserIndex = () => {
 
         username && userData(username)
 
-    }, [router])
+    }, [router, pid, username])
     console.log(userData)
 
     return (
         <div className="bg-black font-Monsertat ">
             {
-                username && userData.name ? (
+                username && userData.name? (
                     <Head>
                         <title>
                             {userData.name} / Twitter

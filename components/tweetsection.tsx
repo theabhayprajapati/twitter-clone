@@ -42,7 +42,7 @@ const TweetsSection = () => {
                 Alltweets ? (
                     Alltweets.map((alltweets: any) => {
                         return (
-                            <div className="text-white ">
+                            <div key={alltweets.id} className="text-white ">
                                 <div className="flex space-x-2 ">
 
 
