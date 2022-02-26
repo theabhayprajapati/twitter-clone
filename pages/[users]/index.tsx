@@ -29,8 +29,7 @@ const UserIndex = () => {
 
         username && userData(username)
 
-    }, [router, pid, username])
-    // eslint-disable-line react-hooks/exhaustive-deps
+    }, [router])
     console.log(userData)
 
     return (
