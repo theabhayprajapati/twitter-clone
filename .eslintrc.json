@@ -3,7 +3,3 @@
   "react/jsx-key": "off"
 }
 
-{
-  "extends": ["next", "next/core-web-vitals"],
-  "react/jsx-key": "off"
-}
